@@ -39,9 +39,6 @@ jobs:
   code-quality:
     runs-on: ubuntu-latest
     name: Code quality
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
       - uses: actions/checkout@v2
       - name: Set up Elixir
