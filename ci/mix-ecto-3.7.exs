@@ -7,7 +7,15 @@ defmodule Ecto.ULID.Mixfile do
       version: "0.1.1",
       elixir: "~> 1.4",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test,
+        "coveralls.github": :test
+      ]
     ]
   end
 
@@ -19,7 +27,8 @@ defmodule Ecto.ULID.Mixfile do
 
   defp deps do
     [
-      {:ecto, "~> 3.7.0"}
+      {:ecto, "~> 3.7.0"},
+      {:excoveralls, "~> 0.10", only: :test},
     ]
   end
 end

@@ -56,7 +56,7 @@ defmodule Ecto.ULID.Mixfile do
       {:dialyxir, "~> 1.1.0", only: [:dev], runtime: false},
       {:ecto, "~> 3.2"},
       {:ex_doc, "~> 0.16", only: :dev, runtime: false},
-      {:excoveralls, "~> 0.10", only: :test},
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 end
