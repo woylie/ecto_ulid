@@ -63,6 +63,7 @@ defmodule Ecto.ULID do
 
   * `timestamp`: A Unix timestamp with millisecond precision.
   """
+  @spec generate(integer) :: binary
   def generate(timestamp \\ System.system_time(:millisecond)) do
     {:ok, ulid} = encode(bingenerate(timestamp))
     ulid
@@ -78,6 +79,7 @@ defmodule Ecto.ULID do
 
   * `timestamp`: A Unix timestamp with millisecond precision.
   """
+  @spec bingenerate(integer) :: binary
   def bingenerate(timestamp \\ System.system_time(:millisecond)) do
     <<timestamp::unsigned-size(48), :crypto.strong_rand_bytes(10)::binary>>
   end
