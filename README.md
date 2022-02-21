@@ -1,4 +1,4 @@
-[![Elixir CI](https://github.com/woylie/ecto-ulid/actions/workflows/elixir.yml/badge.svg)](https://github.com/woylie/ecto-ulid/actions/workflows/elixir.yml) [![Hex](https://img.shields.io/hexpm/v/ecto_ulid_next)](https://hex.pm/packages/ecto_ulid_next)
+[![Elixir CI](https://github.com/woylie/ecto_ulid/actions/workflows/elixir.yml/badge.svg)](https://github.com/woylie/ecto_ulid/actions/workflows/elixir.yml) [![Hex](https://img.shields.io/hexpm/v/ecto_ulid_next)](https://hex.pm/packages/ecto_ulid_next)
 
 # Ecto.ULID next
 
