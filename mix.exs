@@ -11,6 +11,14 @@ defmodule Ecto.ULID.Mixfile do
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test,
+        "coveralls.github": :test
+      ],
       name: "Ecto.ULID",
       description: "An Ecto.Type implementation of ULID.",
       package: package(),
@@ -47,7 +55,8 @@ defmodule Ecto.ULID.Mixfile do
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.1.0", only: [:dev], runtime: false},
       {:ecto, "~> 3.2"},
-      {:ex_doc, "~> 0.16", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.16", only: :dev, runtime: false},
+      {:excoveralls, "~> 0.10", only: :test},
     ]
   end
 end
