@@ -1,4 +1,3 @@
-mix.lock
 bench/snapshots/
 
 # The directory Mix will write compiled artifacts to.
@@ -21,3 +20,5 @@ erl_crash.dump
 
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
+
+.elixir_ls
