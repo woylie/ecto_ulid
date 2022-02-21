@@ -38,6 +38,7 @@ defmodule Ecto.ULID.Mixfile do
     [
       {:benchee, "~> 1.0", only: :dev},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.1.0", only: [:dev], runtime: false},
       {:ecto, "~> 3.2"},
       {:ex_doc, "~> 0.16", only: :dev, runtime: false}
     ]
