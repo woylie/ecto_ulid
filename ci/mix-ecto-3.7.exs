@@ -19,7 +19,7 @@ defmodule Ecto.ULID.Mixfile do
 
   defp deps do
     [
-      {:ecto, "~> 3.5.0"}
+      {:ecto, "~> 3.7.0"}
     ]
   end
 end

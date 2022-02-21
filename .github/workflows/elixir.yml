@@ -12,9 +12,25 @@ jobs:
     name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}} / Ecto ${{matrix.ecto}}
     strategy:
       matrix:
-        otp: ["21.3", "22.3"]
-        elixir: ["1.7.4", "1.8.0", "1.11.3"]
-        ecto: ["3.2", "3.5"]
+        otp: ["21.3", "22.3", "23.3", "24.2"]
+        elixir: ["1.9.4", "1.10.4", "1.11.4", "1.12.3", "1.13.3"]
+        ecto: ["3.2", "3.7"]
+        exclude:
+          - otp: "23.3"
+            elixir: "1.9.4"
+          - otp: "24.2"
+            elixir: "1.9.4"
+          - otp: "23.3"
+            elixir: "1.10.4"
+          - otp: "24.2"
+            elixir: "1.10.4"
+          - otp: "24.2"
+            elixir: "1.11.4"
+          - otp: "21.3"
+            elixir: "1.12.3"
+          - otp: "21.3"
+            elixir: "1.13.3"
+
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       MIX_EXS: ci/mix-ecto-${{ matrix.ecto }}.exs
@@ -44,8 +60,8 @@ jobs:
       - name: Set up Elixir
         uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
         with:
-          otp-version: 22.3
-          elixir-version: 1.11.3
+          otp-version: 24.2
+          elixir-version: 1.13.3
       - name: Restore dependencies cache
         uses: actions/cache@v2
         with:
