@@ -13,11 +13,13 @@ defmodule Ecto.ULID do
   @doc """
   The underlying schema type.
   """
+  @impl Ecto.Type
   def type, do: :uuid
 
   @doc """
   Casts a string to ULID.
   """
+  @impl Ecto.Type
   def cast(<<_::bytes-size(26)>> = value) do
     if valid?(value) do
       {:ok, value}
@@ -41,16 +43,18 @@ defmodule Ecto.ULID do
   @doc """
   Converts a Crockford Base32 encoded ULID into a binary.
   """
+  @impl Ecto.Type
   def dump(<<_::bytes-size(26)>> = encoded), do: decode(encoded)
   def dump(_), do: :error
 
   @doc """
   Converts a binary ULID into a Crockford Base32 encoded string.
   """
+  @impl Ecto.Type
   def load(<<_::unsigned-size(128)>> = bytes), do: encode(bytes)
   def load(_), do: :error
 
-  @doc false
+  @impl Ecto.Type
   def autogenerate, do: generate()
 
   @doc """
