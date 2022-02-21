@@ -5,6 +5,12 @@ defmodule Ecto.ULIDTest do
             145, 22>>
   @encoded "01BZ13RV29T5S8HV45EDNC748P"
 
+  describe "type/0" do
+    test "returns :uuid" do
+      assert Ecto.ULID.type() == :uuid
+    end
+  end
+
   describe "generate/0" do
     test "generate/0 encodes milliseconds in first 10 characters" do
       # test case from ULID README: https://github.com/ulid/javascript#seed-time
@@ -80,6 +86,18 @@ defmodule Ecto.ULIDTest do
     end
   end
 
+  describe "cast!/1" do
+    test "returns valid ULID" do
+      assert Ecto.ULID.cast!(@encoded) == @encoded
+    end
+
+    test "returns error when encoding is too short" do
+      assert_raise Ecto.CastError, fn ->
+        Ecto.ULID.cast!("0000000000000000000000000")
+      end
+    end
+  end
+
   describe "dump/1" do
     test "dumps valid ULID to binary" do
       {:ok, bytes} = Ecto.ULID.dump(@encoded)
@@ -143,6 +161,13 @@ defmodule Ecto.ULIDTest do
                <<0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0>>
              ) ==
                :error
+    end
+  end
+
+  describe "autogenerate/0" do
+    test "returns a valid ULID" do
+      ulid = Ecto.ULID.autogenerate()
+      assert {:ok, ^ulid} = Ecto.ULID.cast(ulid)
     end
   end
 end
