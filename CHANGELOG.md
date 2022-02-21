@@ -1,5 +1,16 @@
 # Change Log
 
+## 0.3.1 (2022-02-22)
+
+Maintenance release
+
+### Changed
+
+- Elixir version support now follows the
+  [officially supported Elixir versions](https://hexdocs.pm/elixir/1.13/compatibility-and-deprecations.html).
+- Update test matrix accordingly.
+- Improve documentation and type specs.
+
 ## 0.3.0 (2020-11-16)
 
 ### Breaking Changes
