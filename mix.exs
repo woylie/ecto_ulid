@@ -1,21 +1,25 @@
 defmodule Ecto.ULID.Mixfile do
   use Mix.Project
 
+  @source_url "https://github.com/woylie/ecto-ulid"
+  @version "0.3.0"
+
   def project do
     [
       app: :ecto_ulid_next,
-      version: "0.3.0",
+      version: @version,
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       name: "Ecto.ULID",
       description: "An Ecto.Type implementation of ULID.",
       package: package(),
-      source_url: "https://github.com/woylie/ecto-ulid",
-      homepage_url: "https://github.com/woylie/ecto-ulid",
+      source_url: @source_url,
+      homepage_url: @source_url,
       docs: [
         main: "readme",
-        extras: ["README.md"]
+        extras: ["README.md"],
+        source_ref: "main"
       ]
     ]
   end
@@ -30,7 +34,10 @@ defmodule Ecto.ULID.Mixfile do
     [
       maintainers: ["Mathias Polligkeit"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/woylie/ecto-ulid"}
+      links: %{
+        "GitHub" => @source_url,
+        "Changelog" => @source_url <> "/blob/main/CHANGELOG.md"
+      }
     ]
   end
 
