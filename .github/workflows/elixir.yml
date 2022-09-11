@@ -18,11 +18,11 @@ jobs:
         exclude:
           - otp: "23.3"
             elixir: "1.10.4"
-          - otp: "24.4"
+          - otp: "24.3"
             elixir: "1.10.4"
           - otp: "25.0"
             elixir: "1.10.4"
-          - otp: "24.4"
+          - otp: "24.3"
             elixir: "1.11.4"
           - otp: "25.0"
             elixir: "1.11.4"
@@ -48,7 +48,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: deps
-          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+          key: ${{ runner.os }}-mix-${{matrix.otp}}-${{ hashFiles('**/mix.lock') }}
           restore-keys: ${{ runner.os }}-mix-
       - name: Install dependencies
         run: mix deps.get
