@@ -28,7 +28,7 @@ defmodule Ecto.ULID.Mixfile do
   defp deps do
     [
       {:ecto, "3.2.5"},
-      {:excoveralls, "~> 0.10", only: :test},
+      {:excoveralls, "~> 0.15", only: :test},
     ]
   end
 end
