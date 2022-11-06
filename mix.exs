@@ -24,17 +24,24 @@ defmodule Ecto.ULID.Mixfile do
       package: package(),
       source_url: @source_url,
       homepage_url: @source_url,
-      docs: [
-        main: "readme",
-        extras: ["README.md"],
-        source_ref: "main"
-      ]
+      docs: docs()
     ]
   end
 
   def application do
     [
       extra_applications: [:logger]
+    ]
+  end
+
+  defp deps do
+    [
+      {:benchee, "~> 1.0", only: :dev},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.2.0", only: [:dev], runtime: false},
+      {:ecto, "~> 3.2"},
+      {:ex_doc, "~> 0.16", only: :dev, runtime: false},
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 
@@ -49,14 +56,12 @@ defmodule Ecto.ULID.Mixfile do
     ]
   end
 
-  defp deps do
+  defp docs do
     [
-      {:benchee, "~> 1.0", only: :dev},
-      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.2.0", only: [:dev], runtime: false},
-      {:ecto, "~> 3.2"},
-      {:ex_doc, "~> 0.16", only: :dev, runtime: false},
-      {:excoveralls, "~> 0.10", only: :test}
+      main: "readme",
+      extras: ["README.md", "CHANGELOG.md"],
+      source_ref: @version,
+      skip_undefined_reference_warnings_on: ["CHANGELOG.md"]
     ]
   end
 end
