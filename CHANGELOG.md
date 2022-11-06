@@ -1,6 +1,12 @@
-# Change Log
+# Changelog
 
-## 0.3.1 (2022-02-22)
+## Unreleased
+
+### Changed
+
+- Minor dependency and documentation updates.
+
+## [0.3.1] - 2022-02-22
 
 Maintenance release
 
@@ -11,32 +17,29 @@ Maintenance release
 - Update test matrix accordingly.
 - Improve documentation and type specs.
 
-## 0.3.0 (2020-11-16)
+## [0.3.0] - 2020-11-16
 
-### Breaking Changes
+### Changed
 
 - Minimum supported Ecto is now 3.2.
 - Minimum supported Elixir is now 1.7.
 
-## 0.2.0 (2019-01-17)
-
-### Breaking Changes
-
-- Minimum supported Elixir is now 1.4.
+## [0.2.0] - 2019-01-17
 
 ### Changed
 
+- Minimum supported Elixir is now 1.4.
 - ([#3](https://github.com/TheRealReal/ecto-ulid/pull/3))
   Fix deprecation warnings regarding time units.
 
-## 0.1.1 (2018-12-03)
+## [0.1.1] - 2018-12-03
 
 ### Added
 
 - ([#2](https://github.com/TheRealReal/ecto-ulid/pull/2))
   Add support for Ecto 3.x.
 
-## 0.1.0 (2018-06-06)
+## [0.1.0] - 2018-06-06
 
 ### Added
 
