@@ -24,7 +24,10 @@ defmodule Ecto.ULID.Mixfile do
       package: package(),
       source_url: @source_url,
       homepage_url: @source_url,
-      docs: docs()
+      docs: docs(),
+      dialyzer: [
+        plt_file: {:no_warn, ".plts/dialyzer.plt"}
+      ]
     ]
   end
 
