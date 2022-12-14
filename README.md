@@ -50,7 +50,7 @@ Install `ecto_ulid_next` from Hex by adding it to the dependencies in
 
 ```elixir
 defp deps do
-  [{:ecto_ulid_next, "~> 1.0.0"}]
+  [{:ecto_ulid_next, "~> 1.0.1"}]
 end
 ```
 

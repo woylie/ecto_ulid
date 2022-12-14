@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## [1.0.1] - 2022-12-14
+
+### Fixed
+
+- Source references in documentation.
+
 ## [1.0.0] - 2022-12-14
 
 Stable release.
