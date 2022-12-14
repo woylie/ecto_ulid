@@ -2,7 +2,7 @@ defmodule Ecto.ULID.Mixfile do
   use Mix.Project
 
   @source_url "https://github.com/woylie/ecto_ulid"
-  @version "1.0.0"
+  @version "1.0.1"
 
   def project do
     [
@@ -55,7 +55,8 @@ defmodule Ecto.ULID.Mixfile do
       links: %{
         "GitHub" => @source_url,
         "Changelog" => @source_url <> "/blob/main/CHANGELOG.md"
-      }
+      },
+      files: ~w(lib .formatter.exs mix.exs README* LICENSE* CHANGELOG*)
     ]
   end
 
@@ -63,7 +64,7 @@ defmodule Ecto.ULID.Mixfile do
     [
       main: "readme",
       extras: ["README.md", "CHANGELOG.md"],
-      source_ref: @version,
+      source_ref: "v" <> @version,
       skip_undefined_reference_warnings_on: ["CHANGELOG.md"]
     ]
   end
