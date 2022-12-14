@@ -8,7 +8,7 @@ defmodule Ecto.ULID.Mixfile do
     [
       app: :ecto_ulid_next,
       version: @version,
-      elixir: "~> 1.7",
+      elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
