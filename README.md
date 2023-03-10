@@ -1,19 +1,13 @@
 # Ecto.ULID Next
 
-[![Elixir CI](https://github.com/woylie/ecto_ulid/actions/workflows/elixir.yml/badge.svg)](https://github.com/woylie/ecto_ulid/actions/workflows/elixir.yml) [![Hex](https://img.shields.io/hexpm/v/ecto_ulid_next)](https://hex.pm/packages/ecto_ulid_next)
+[![Elixir CI](https://github.com/woylie/ecto_ulid/actions/workflows/elixir.yml/badge.svg)](https://github.com/woylie/ecto_ulid/actions/workflows/elixir.yml)
+[![Hex](https://img.shields.io/hexpm/v/ecto_ulid_next)](https://hex.pm/packages/ecto_ulid_next)
 
 An `Ecto.Type` implementation of [ULID](https://github.com/ulid/spec).
 
-`Ecto.ULID` should be compatible anywhere that `Ecto.UUID` is supported. It has
-been confirmed to work with PostgreSQL and MySQL on Ecto ~> 3.2.
-
-ULID is a 128-bit universally unique lexicographically sortable identifier. ULID
-is binary-compatible with UUID, so it can be stored in a `uuid` column in a
-database.
-
-**This is a fork of [TheRealReal/ecto-ulid](https://github.com/TheRealReal/ecto-ulid),
-which doesn't seem to be maintained anymore. The aim is to ensure compatibility
-with current and future Ecto versions.**
+> This is a fork of [TheRealReal/ecto-ulid](https://github.com/TheRealReal/ecto-ulid),
+> which doesn't seem to be maintained anymore. The aim is to ensure compatibility
+> with current and future Ecto versions.
 
 ## Features
 
@@ -27,83 +21,125 @@ with current and future Ecto versions.**
 - Confirmed working on PostgreSQL and MySQL.
 - Optimized for high throughput.
 
+## Why to use ULID?
+
+ULID is the abbreviation for Universally Unique Lexicographically Sortable Identifier.
+
+Just as its name suggests, **ULID supports lexicographically sorting**, which is
+not supported by UUID.
+
+## Compatibility
+
+ULID is binary-compatible with UUID. Because of that, `Ecto.ULID` should be compatible
+anywhere that `Ecto.UUID` is supported.
+
+It has been confirmed to work with PostgreSQL and MySQL, with using `uuid` column in a
+database.
+
 ## Performance
 
 Since one use case of ULID is to handle a large volume of events, `Ecto.ULID` is
 optimized to be as fast as possible. It borrows techniques from `Ecto.UUID` to
 achieve sub-microsecond times for most operations.
 
-A benchmark suite is included. Download the repository and run `mix run bench/ulid_bench.exs` to test the performance on your system.
+A benchmark suite is included. Download the repository and run `mix run bench/ulid_bench.exs`
+to test the performance on your system.
 
-## Usage
+## Installation
 
-Usage is very similar to `Ecto.UUID`. The following example shows how to use
-`Ecto.ULID` as a primary key in a database table, but it can be used for other
-columns just as easily.
-
-[API documentation](https://hexdocs.pm/ecto_ulid_next) is available on hexdocs.
-
-### Install
-
-Install `ecto_ulid_next` from Hex by adding it to the dependencies in
+Install `ecto_ulid_next` by adding it to the dependencies in
 `mix.exs`:
 
 ```elixir
 defp deps do
-  [{:ecto_ulid_next, "~> 1.0.1"}]
+  [
+    {:ecto_ulid_next, "~> 1.0.1"}
+  ]
 end
 ```
 
-### Migration
+## Usage
 
-Since ULID is binary-compatible with UUID, the migrations look the same for both
-types. Use `:binary_id` when defining a column in a migration:
+Below are three common use cases, for more details please refer to the
+[documentation](https://hexdocs.pm/ecto_ulid_next).
+
+### case 1 - use `Ecto.ULID` as a primary key for one table
+
+When adding a column in a migration, `:binary_id` is used as the type of that column:
+
+> As said above, ULID is binary-compatible with UUID. Using `:binary_id` directly can
+> reduce the hassle of customizing database data types.
 
 ```elixir
 create table(:events, primary_key: false) do
   add :id, :binary_id, null: false, primary_key: true
-  # more columns ...
+  # ...
 end
 ```
 
-Alternatively, if you plan to use ULID as the primary key type for all of your
-tables, you can set `migration_primary_key` when configuring your `Repo`:
-
-```elixir
-config :my_app, MyApp.Repo, migration_primary_key: [name: :id, type: :binary_id]
-```
-
-In this case, you _do not_ need to specify the `id` column in your migrations:
-
-```elixir
-create table(:events) do
-  # more columns ...
-end
-```
-
-### Schema
-
-When defining a model's schema, use `Ecto.ULID` as the `@primary_key` or
-`@foreign_key_type` as appropriate for your schema. Here's an example of using
-both:
+When defining a schema, use `Ecto.ULID` for the `@primary_key` or `@foreign_key_type`
+as appropriate:
 
 ```elixir
 defmodule MyApp.Event do
   use Ecto.Schema
 
-  @primary_key {:id, Ecto.ULID, autogenerate: false}
+  @primary_key {:id, Ecto.ULID, autogenerate: true}
   @foreign_key_type Ecto.ULID
 
   schema "events" do
-    # more columns ...
+    # ...
   end
 end
 ```
 
-`Ecto.ULID` supports `autogenerate: true` as well as `autogenerate: false` when
-used as the primary key.
+### case 2 - use `Ecto.ULID` as primary keys for all tables
 
-### Application Usage
+First, configure all the migrations to use `:binary_id` as primary keys:
+
+```elixir
+config :my_app, MyApp.Repo, migration_primary_key: [name: :id, type: :binary_id]
+```
+
+Then, just create migrations. There's no need to specify the `id` column:
+
+```elixir
+create table(:events) do
+  # ...
+end
+```
+
+Before defining schemas, create a shared module containing general configurations:
+
+```elixir
+defmodule MyApp.Schema do
+  @moduledoc false
+
+  defmacro __using__(_) do
+    quote do
+      use Ecto.Schema
+
+      @primary_key {:id, Ecto.ULID, autogenerate: true}
+      @foreign_key_type Ecto.ULID
+    end
+  end
+end
+```
+
+When defining a schema, just use `use MyApp.Schema`. There's no need to specify
+other module attributes:
+
+```elixir
+defmodule MyApp.Event do
+  use MyApp.Schema
+
+  schema "events" do
+    # ...
+  end
+end
+```
+
+## case 3 - generate a ULID directly
 
 A ULID can be generated in string or binary format by calling `generate/0` or
 `bingenerate/0`. This can be useful when generating ULIDs to send to external
@@ -118,5 +154,8 @@ iex> Ecto.ULID.bingenerate()
 ```
 
 To backfill old data, it may be helpful to pass a timestamp to `generate/1` or
-`bingenerate/1`. See the
-[API documentation](https://hexdocs.pm/ecto_ulid_next) for more details.
+`bingenerate/1`.
+
+## LICENSE
+
+[MIT](./LICENSE)
