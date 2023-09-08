@@ -86,7 +86,7 @@ defmodule Ecto.ULID do
   @doc """
   Generates a Crockford Base32 encoded ULID.
 
-  Optionally takes a Unix timestamp wtih millisecond precision as an argument.
+  Optionally takes a Unix timestamp with millisecond precision as an argument.
   If no argument is passed, the current time is used as a base for the ULID.
 
   ## Examples
@@ -106,7 +106,7 @@ defmodule Ecto.ULID do
   @doc """
   Generates a binary ULID.
 
-  Optionally takes a Unix timestamp wtih millisecond precision as an argument.
+  Optionally takes a Unix timestamp with millisecond precision as an argument.
   If no argument is passed, the current time is used as a base for the ULID.
 
   ## Examples
