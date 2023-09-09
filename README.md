@@ -55,7 +55,7 @@ To install `ecto_ulid_next`, add it to your project's dependencies in `mix.exs`:
 ```elixir
 defp deps do
   [
-    {:ecto_ulid_next, "~> 1.0.1"}
+    {:ecto_ulid_next, "~> 1.0.2"}
   ]
 end
 ```

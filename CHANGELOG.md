@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## [1.0.2] - 2023-09-09
+
 ### Changed
 
 - Documentation improvements.

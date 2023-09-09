@@ -2,7 +2,7 @@ defmodule Ecto.ULID.Mixfile do
   use Mix.Project
 
   @source_url "https://github.com/woylie/ecto_ulid"
-  @version "1.0.1"
+  @version "1.0.2"
 
   def project do
     [
