@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Changed
+
+- Documentation improvements.
+
 ## [1.0.1] - 2022-12-14
 
 ### Fixed
