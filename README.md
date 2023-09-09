@@ -17,7 +17,7 @@ and upcoming Ecto releases.
 - Read and write ULIDs using the database's native `uuid` type—no need for
   additional database extensions.
 - Supports Ecto 3.2 and above.
-- Supports the [officially supported Elixir versions](https://hexdocs.pm/elixir/compatibility-and-deprecations.html) (currently ~> 1.10).
+- Supports the [officially supported Elixir versions](https://hexdocs.pm/elixir/compatibility-and-deprecations.html) (currently ~> 1.11).
 - Tested and confirmed to work on both PostgreSQL and MySQL.
 - Optimized for high throughput scenarios.
 
