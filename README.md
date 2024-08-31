@@ -29,7 +29,8 @@ enables natural chronological sorting and efficient range queries, making ULID
 particularly suitable for time-series data, event sourcing, and other use cases
 where order and time are important factors.
 
-> [!TIP]
+> **Note**
+>
 > As of May 2024, UUIDv7 has been proposed as a standard ([RFC 9562](https://datatracker.ietf.org/doc/html/rfc9562)). UUIDv7 also offers lexicographic
 > sorting and may be preferred for new applications, given its broader adoption
 > and standardized nature.
