@@ -23,13 +23,16 @@ and upcoming Ecto releases.
 
 ## Why Choose ULID?
 
-ULID (Universally Unique Lexicographically Sortable Identifier) offers
-lexicographic sorting, unlike UUID. This feature simplifies chronological
-sorting and range queries, making ULID advantageous for time-series data, event
-sourcing, and other specific use-cases.
+ULID (Universally Unique Lexicographically Sortable Identifier) is designed for
+lexicographic sorting, unlike traditional UUIDs. Its timestamp-based prefix
+enables natural chronological sorting and efficient range queries, making ULID
+particularly suitable for time-series data, event sourcing, and other use cases
+where order and time are important factors.
 
-Note: UUID v7 is a new proposed format that also aims to offer lexicographic
-sorting.
+> [!TIP]
+> As of May 2024, UUIDv7 has been proposed as a standard ([RFC 9562](https://datatracker.ietf.org/doc/html/rfc9562)). UUIDv7 also offers lexicographic
+> sorting and may be preferred for new applications, given its broader adoption
+> and standardized nature.
 
 ## Compatibility Considerations
 
