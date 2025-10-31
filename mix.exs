@@ -45,7 +45,7 @@ defmodule Ecto.ULID.Mixfile do
   defp deps do
     [
       {:benchee, "== 1.4.0", only: :dev},
-      {:credo, "== 1.7.12", only: [:dev, :test], runtime: false},
+      {:credo, "== 1.7.13", only: [:dev, :test], runtime: false},
       {:dialyxir, "== 1.4.5", only: [:dev], runtime: false},
       {:ecto, "~> 3.2"},
       {:ex_doc, "== 0.38.2", only: :dev, runtime: false},
